@@ -1,17 +1,13 @@
-package com.jefferson.lima.domesticTask.entities;
+package com.jefferson.lima.domesticTask.dtos;
 
+import com.jefferson.lima.domesticTask.entities.DomesticTask;
+import com.jefferson.lima.domesticTask.entities.Responsible;
 import com.jefferson.lima.domesticTask.statusEnum.StatusDomesticTask;
-import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
-@Entity
-@Table(name = "TB_TASKS")
-public class DomesticTask {
+public class Domestictaskdto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -20,24 +16,19 @@ public class DomesticTask {
 
     private LocalDateTime conclusionDate;
 
-    @ManyToOne
-    @JoinColumn(name = "RESPONSIBLE_ID")
     private Responsible responsible;
 
-    @Enumerated(EnumType.ORDINAL)
     private StatusDomesticTask status;
 
-    public DomesticTask(){
+    public Domestictaskdto(){}
 
-    }
-
-    public DomesticTask(Long id, String name, String description, LocalDateTime conclusionDate, Responsible responsible) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.conclusionDate = conclusionDate;
-        this.responsible = responsible;
-        this.status = StatusDomesticTask.TREND;
+    public Domestictaskdto(DomesticTask domesticTask) {
+        this.id = domesticTask.getId();
+        this.name = domesticTask.getName();
+        this.description = domesticTask.getDescription();
+        this.conclusionDate = domesticTask.getConclusionDate();
+        this.responsible = domesticTask.getResponsible();
+        this.status = domesticTask.getStatus();
     }
 
     public Long getId() {
@@ -84,15 +75,7 @@ public class DomesticTask {
         return status;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        DomesticTask that = (DomesticTask) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public void setStatus(StatusDomesticTask status) {
+        this.status = status;
     }
 }
