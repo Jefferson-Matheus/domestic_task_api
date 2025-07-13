@@ -1,7 +1,6 @@
 package com.jefferson.lima.domesticTask.dtos;
 
 import com.jefferson.lima.domesticTask.entities.DomesticTask;
-import com.jefferson.lima.domesticTask.entities.Responsible;
 import com.jefferson.lima.domesticTask.statusEnum.StatusDomesticTask;
 
 import java.time.LocalDateTime;
@@ -16,7 +15,7 @@ public class Domestictaskdto {
 
     private LocalDateTime conclusionDate;
 
-    private Responsible responsible;
+    private String responsible;
 
     private StatusDomesticTask status;
 
@@ -27,7 +26,7 @@ public class Domestictaskdto {
         this.name = domesticTask.getName();
         this.description = domesticTask.getDescription();
         this.conclusionDate = domesticTask.getConclusionDate();
-        this.responsible = domesticTask.getResponsible();
+        this.responsible = domesticTask.getResponsible().getName();
         this.status = domesticTask.getStatus();
     }
 
@@ -63,11 +62,11 @@ public class Domestictaskdto {
         this.conclusionDate = conclusionDate;
     }
 
-    public Responsible getResponsible() {
+    public String getResponsible() {
         return responsible;
     }
 
-    public void setResponsible(Responsible responsible) {
+    public void setResponsible(String responsible) {
         this.responsible = responsible;
     }
 
