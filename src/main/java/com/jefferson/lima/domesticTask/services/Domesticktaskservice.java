@@ -6,6 +6,7 @@ import com.jefferson.lima.domesticTask.entities.DomesticTask;
 import com.jefferson.lima.domesticTask.repositories.Taskrepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Domesticktaskservice {
     @Autowired
     private Taskrepository taskrepository;
 
+    @Transactional(readOnly = true)
     public List<Domestictaskdto> findAll(){
         List<DomesticTask> domesticTasksResult = taskrepository.findAll();
 
