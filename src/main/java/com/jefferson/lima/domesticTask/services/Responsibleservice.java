@@ -26,4 +26,13 @@ public class Responsibleservice {
 		return allResponsibles;
 	}
 	
+	
+	public void deleteResponsible(Long idResponsible) {
+		
+		Responsible responsibleSelected = responsibleRepository.findById(idResponsible).orElseThrow(() -> new RuntimeException("R"));
+		
+		responsibleRepository.delete(responsibleSelected);
+	
+	}
+	
 }
