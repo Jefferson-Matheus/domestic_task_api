@@ -84,6 +84,10 @@ public class DomesticTask {
         return status;
     }
 
+    public void setStatus(StatusDomesticTask status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
