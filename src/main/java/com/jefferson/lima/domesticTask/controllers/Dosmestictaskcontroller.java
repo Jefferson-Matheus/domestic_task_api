@@ -3,9 +3,7 @@ package com.jefferson.lima.domesticTask.controllers;
 import com.jefferson.lima.domesticTask.dtos.Domestictaskdto;
 import com.jefferson.lima.domesticTask.services.Domesticktaskservice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +19,22 @@ public class Dosmestictaskcontroller {
         List<Domestictaskdto> domesticTaskResult = domestickTaskService.findAll();
 
         return domesticTaskResult;
+    }
+
+    @PutMapping("/{id}/finished")
+    public void updateToFinished(@PathVariable Long id){
+
+       domestickTaskService.updateToFinishedSatus(id);
+
+    }
+    
+    @PutMapping("/{id}/upadateName")
+    public void upadateName(@PathVariable Long id, @RequestBody Domestictaskdto body) {
+    	
+    	String bodyTaskname = body.getName();
+    	
+    	domestickTaskService.upadateDomesticTaskName(id, bodyTaskname);
+    	
     }
 
 }
