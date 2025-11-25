@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jefferson.lima.domesticTask.dtos.Responsibledto;
 import com.jefferson.lima.domesticTask.services.Responsibleservice;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping(value = "/responsibles")
@@ -31,5 +34,13 @@ public class Responsiblecontroller {
 	public void deleteResponsible(@PathVariable Long id) {
 		
 		responsibleService.deleteResponsible(id);
+	}
+	
+	@PutMapping("/{id}")
+	public void putMethodName(@PathVariable Long id, @RequestBody Responsibledto responsible) {
+		
+		responsibleService.updateNameResponsible(id, responsible.getName());
+		
+	
 	}
 }

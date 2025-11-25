@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jefferson.lima.domesticTask.dtos.Domestictaskdto;
 import com.jefferson.lima.domesticTask.dtos.Responsibledto;
 import com.jefferson.lima.domesticTask.entities.Responsible;
 import com.jefferson.lima.domesticTask.repositories.Responsiblerepository;
@@ -33,6 +34,17 @@ public class Responsibleservice {
 		
 		responsibleRepository.delete(responsibleSelected);
 	
+	}
+	
+	public void updateNameResponsible(Long idResponsible, String updatedName) {
+		
+		Responsible responsibleSelected = responsibleRepository.findById(idResponsible).orElseThrow(() -> new RuntimeException("R"));
+		
+		responsibleSelected.setName(updatedName);
+		
+		responsibleRepository.save(responsibleSelected);
+		
+		
 	}
 	
 }
